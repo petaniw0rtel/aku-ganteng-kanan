@@ -1,185 +1,271 @@
-<!doctype html>
-<html lang="en-US">
-    <!doctype html>
-    <html lang="en-US">
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>lihat sebuah titik</title>
+        <title>Bubbles love ❤</title>
+        <link rel="stylesheet" href="style.css">
         <style>
             body {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                font-family: Arial, sans-serif;
-                background-color: #f0f0f0;
-                margin: 0;
-                height: 100vh;
-                justify-content: center;
-            }
-            #game {
-                width: 400px;
-                height: 400px;
-                background-color: #eee;
-                border: 2px solid #333;
-            }
-            h2 {
-                margin-bottom: 20px;
-                font-size: 36px;
-            }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url('https://img.freepik.com/vector-gratis/tema-san-valentin-corazones-cielo-rosa_1308-38030.jpg?semt=ais_hybrid&w=740') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.message {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    font-size: 28px;
+    color: #d63384;
+    font-weight: bold;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.message:hover {
+    transform: scale(1.1);
+}
+
+.hearts {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    z-index: -1;
+    font-size: 50px;
+    color: #ff99b6;
+    animation: floatHearts 5s ease-in-out infinite;
+}
+
+@keyframes floatHearts {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-150px) scale(1.5); opacity: 0.5; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.hearts:nth-child(2) { left: 25%; animation-duration: 6s; }
+.hearts:nth-child(3) { left: 40%; animation-duration: 7s; }
+.hearts:nth-child(4) { left: 60%; animation-duration: 8s; }
+.hearts:nth-child(5) { left: 75%; animation-duration: 9s; }
+
+.text-container {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+}
+
+.charming-text {
+    position: absolute;
+    font-size: 18px;
+    font-family: 'Cursive', sans-serif;
+    color: #d63384;
+    animation: fadeInText 6s ease-in-out infinite;
+    z-index: 1;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 80vw;
+    word-wrap: break-word;
+}
+
+.charming-text:nth-child(1) { top: 15%; left: 5%; text-align: left; animation-duration: 6s; }
+.charming-text:nth-child(2) { top: 25%; left: 5%; text-align: left; animation-duration: 7s; }
+.charming-text:nth-child(3) { top: 35%; left: 5%; text-align: left; animation-duration: 8s; }
+.charming-text:nth-child(4) { top: 15%; right: 5%; text-align: right; animation-duration: 6s; }
+.charming-text:nth-child(5) { top: 25%; right: 5%; text-align: right; animation-duration: 7s; }
+.charming-text:nth-child(6) { top: 35%; right: 5%; text-align: right; animation-duration: 8s; }
+
+@keyframes fadeInText {
+    0% { opacity: 0; }
+    50% { opacity: 0.5; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.flowers {
+    position: absolute;
+    bottom: 10px;
+    animation: flowerAnimation 5s ease-in-out infinite;
+    font-size: 30px;
+}
+
+@keyframes flowerAnimation {
+    0% { transform: translateY(0); opacity: 0; }
+    50% { transform: translateY(-50px); opacity: 1; }
+    100% { transform: translateY(0); opacity: 0; }
+}
+
+.flowers:nth-child(1) { left: 10%; animation-duration: 6s; }
+.flowers:nth-child(2) { left: 30%; animation-duration: 7s; }
+.flowers:nth-child(3) { left: 50%; animation-duration: 8s; }
+.flowers:nth-child(4) { left: 70%; animation-duration: 9s; }
+.flowers:nth-child(5) { left: 90%; animation-duration: 10s; }
+
+.bubbles {
+    position: absolute;
+    bottom: 10px;
+    font-size: 25px;
+    color: #ff99b6;
+    animation: bubbleAnimation 7s ease-in-out infinite;
+}
+
+@keyframes bubbleAnimation {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-100px) scale(1.3); opacity: 0.4; }
+    100% { transform: translateY(0) scale(1); opacity: 0.8; }
+}
+
+.bubbles:nth-child(1) { left: 10%; animation-duration: 8s; }
+.bubbles:nth-child(2) { left: 30%; animation-duration: 9s; }
+.bubbles:nth-child(3) { left: 50%; animation-duration: 10s; }
+.bubbles:nth-child(4) { left: 70%; animation-duration: 11s; }
+.bubbles:nth-child(5) { left: 90%; animation-duration: 12s; }
+
+#bubbles-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.text-bubble {
+    position: absolute;
+    font-size: 18px;
+    font-family: 'Cursive', sans-serif;
+    color: #d63384;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: floatText 8s ease-in-out forwards;
+    white-space: nowrap;
+}
+
+@keyframes floatText {
+    0% { opacity: 0; transform: scale(0.5) translateY(0px); }
+    50% { opacity: 1; transform: scale(1.2) translateY(-50px); }
+    100% { opacity: 0; transform: scale(1) translateY(-100px); }
+}
+
+@media (max-width: 768px) {
+    body {
+        background-size: 100% 100%;
+        background-position: center top;
+    }
+
+    .message { font-size: 24px; padding: 20px; }
+    .charming-text { font-size: 16px; padding: 8px 16px; }
+    .flowers { font-size: 25px; }
+    .bubbles { font-size: 20px; }
+}
+
+@media (max-width: 768px) {
+    body {
+        background-position: center top;
+        background-size: cover;
+    }
+}
+
+
         </style>
     </head>
-    
-<body>
-    <h2></h2>
-    <div id="game">
-        <canvas id="snake"></canvas>
-    </div>
-    <script>
-        var canvas = document.getElementById("snake");
-        var canvas2d = canvas.getContext("2d");
-        canvas.width = 400;
-        canvas.height = 400;
+    <body>
+        <div class="message">I Love You ❤</div>
+        <div id="bubbles-text"></div>
+        <script src="script.js"></script>
+        <script>
+            // Lista de mensajes románticos que aparecerán en burbujas
+const messages = [
+  "❤",
+  " 🌟",
+  " 💕",
+  " 🥰",
+  " 💖",
+  
+  " 💘"
+];
 
-        // Ular pertama
-        var snake1Segments = [];
-        var snake1Length = 30;
-        var snake1X = 50;
-        var snake1Y = 50;
-        var snake1DirectionX = 0;
-        var snake1DirectionY = 10;
+// Función que crea una burbuja de texto con un mensaje aleatorio
+function createTextBubble() {
+  // Creamos un nuevo elemento <div>
+  const bubble = document.createElement("div");
 
-        // Ular kedua
-        var snake2Segments = [];
-        var snake2Length = 30;
-        var snake2X = 100;
-        var snake2Y = 100;
-        var snake2DirectionX = 0;
-        var snake2DirectionY = 10;
+  // Le asignamos la clase CSS "text-bubble" (debes definirla en tu CSS)
+  bubble.className = "text-bubble";
 
-        var snake3Segments = [];
-        var snake3Length = 30;
-        var snake3X = 200;
-        var snake3Y = 200;
-        var snake3DirectionX = 0;
-        var snake3DirectionY = 10;
+  // Seleccionamos un mensaje aleatorio del arreglo
+  bubble.innerText = messages[Math.floor(Math.random() * messages.length)];
 
-        // Kontrol untuk ular pertama
-        document.onkeydown = function(event) {
-            switch (event.keyCode) {
-                case 37: // Left arrow
-                    if (snake1DirectionX === 0) {
-                        snake1DirectionX = -10;
-                        snake1DirectionY = 0;
-                    }
-                    break;
-                case 38: // Up arrow
-                    if (snake1DirectionY === 0) {
-                        snake1DirectionX = 0;
-                        snake1DirectionY = -10;
-                    }
-                    break;
-                case 39: // Right arrow
-                    if (snake1DirectionX === 0) {
-                        snake1DirectionX = 10;
-                        snake1DirectionY = 0;
-                    }
-                    break;
-                case 40: // Down arrow
-                    if (snake1DirectionY === 0) {
-                        snake1DirectionX = 0;
-                        snake1DirectionY = 10;
-                    }
-                    break;
-            }
-        };
+  // Calculamos una posición aleatoria dentro de la pantalla (entre 10% y 90%)
+  const left = Math.random() * 80 + 10;
+  const top = Math.random() * 80 + 10;
 
-        // Fungsi untuk mengubah arah ular secara acak
-        function randomDirection() {
-            var directions = [
-                { x: 10, y: 0 },   // Right
-                { x: -10, y: 0 },  // Left
-                { x: 0, y: 10 },   // Down
-                { x: 0, y: -10 }   // Up
-            ];
-            var randomIndex = Math.floor(Math.random() * directions.length);
-            return directions[randomIndex];
-        }
+  // Establecemos la posición absoluta y aplicamos las coordenadas calculadas
+  bubble.style.position = "absolute";
+  bubble.style.left = left + "vw"; // vw = porcentaje del ancho de la ventana
+  bubble.style.top = top + "vh";   // vh = porcentaje del alto de la ventana
 
-        // Mengubah arah ular kedua secara acak setiap 2 detik
-        setInterval(function() {
-            var newDirection = randomDirection();
-            if (snake2DirectionX === 0 && newDirection.x !== 0) {
-                snake2DirectionX = newDirection.x;
-                snake2DirectionY = newDirection.y;
-            } else if (snake2DirectionY === 0 && newDirection.y !== 0) {
-                snake2DirectionX = newDirection.x;
-                snake2DirectionY = newDirection.y;
-            }
-        }, 2000);
+  // Buscamos el contenedor con ID "bubbles-text" y añadimos la burbuja
+  const container = document.getElementById("bubbles-text");
+  container.appendChild(bubble);
 
-        setInterval(function() {
-            var newDirection = randomDirection();
-            if (snake3DirectionX === 0 && newDirection.x !== 0) {
-                snake3DirectionX = newDirection.x;
-                snake3DirectionY = newDirection.y;
-            } else if (snake2DirectionY === 0 && newDirection.y !== 0) {
-                snake3DirectionX = newDirection.x;
-                snake3DirectionY = newDirection.y;
-            }
-        }, 2000);
+  // Esperamos un momento (10ms) para asegurarnos de que se renderizó
+  setTimeout(() => {
+    const rect = bubble.getBoundingClientRect(); // Obtenemos las coordenadas reales del div
 
-        function moveSnake(snakeX, snakeY, directionX, directionY, segments, length) {
-            segments.unshift({ x: snakeX, y: snakeY });
-            snakeX += directionX;
-            snakeY += directionY;
+    // Si la burbuja se sale por la derecha, la ajustamos hacia la izquierda
+   
 
-// Jika ular keluar dari batas, kembali ke sisi yang berlawanan
-if (snakeX >= canvas.width) snakeX = 0;
-if (snakeX < 0) snakeX = canvas.width - 10;
-if (snakeY >= canvas.height) snakeY = 0;
-if (snakeY < 0) snakeY = canvas.height - 10;
+    // Si la burbuja se sale por la parte inferior, la subimos
+    if (rect.bottom > window.innerHeight) {
+      const newTop = window.innerHeight - rect.height - 10;
+      
+    }
 
-while (segments.length > length) {
-    segments.pop();
+    // Si se va muy a la izquierda, la traemos hacia adentro
+    if (rect.left < 0) {
+      bubble.style.left = "10px";
+    }
+
+    // Si se va muy arriba, la bajamos un poco
+    if (rect.top < 0) {
+      bubble.style.top = "10px";
+    }
+  }, 10);
+
+  // Eliminamos la burbuja automáticamente después de 8 segundos
+  setTimeout(() => {
+    bubble.remove();
+  }, 8000);
 }
 
-return { snakeX, snakeY };
-}
+// Llamamos a la función createTextBubble cada 500 milisegundos (0.5 segundos)
+setInterval(createTextBubble, 500);
 
-function drawSnake(segments, color) {
-canvas2d.fillStyle = color;
-for (var i = 0; i < segments.length; i++) {
-    canvas2d.fillRect(segments[i].x, segments[i].y, 10, 10);
-}
-}
-
-function gameLoop() {
-// Pindahkan ular pertama
-var snake1Position = moveSnake(snake1X, snake1Y, snake1DirectionX, snake1DirectionY, snake1Segments, snake1Length);
-snake1X = snake1Position.snakeX;
-snake1Y = snake1Position.snakeY;
-
-// Pindahkan ular kedua
-var snake2Position = moveSnake(snake2X, snake2Y, snake2DirectionX, snake2DirectionY, snake2Segments, snake2Length);
-snake2X = snake2Position.snakeX;
-snake2Y = snake2Position.snakeY;
-
-// Pindahkan ular kedua
-var snake3Position = moveSnake(snake3X, snake3Y, snake3DirectionX, snake3DirectionY, snake3Segments, snake3Length);
-snake3X = snake3Position.snakeX;
-snake3Y = snake3Position.snakeY;
-
-// Gambar ular
-canvas2d.clearRect(0, 0, canvas.width, canvas.height);
-drawSnake(snake1Segments, "black"); // Ular pertama berwarna hijau
-drawSnake(snake2Segments, "blue");   // Ular kedua berwarna merah
-drawSnake(snake3Segments, "red");
-// Jalankan loop permainan
-setTimeout(gameLoop, 100);
-}
-
-gameLoop(); // Mulai permainan
-</script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
